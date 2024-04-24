@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Document(collection= "movies")
-public class movie {
+public class Movie {
     @Id
     private ObjectId id;
     private String imdbId;
