@@ -1,5 +1,6 @@
 package dev.davus.movies;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,12 +13,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/reviews")
 public class ReviewController {
-    private ReviewService reviewService;
+    @Autowired
+    private ReviewService service;
 
-    @PostMapping
-    public ResponseEntity<Review> createReview(@RequestBody Map<String, String> payload){
+    @PostMapping()
+    public ResponseEntity<Review> createReview(@RequestBody Map<String, String> payload) {
 
-    return new ResponseEntity<Review>(reviewService.createReviewBy(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.CREATED);
-
+        return new ResponseEntity<Review>(service.createReview(payload.get("reviewBody"), payload.get("imdbId")), HttpStatus.OK);
     }
 }
